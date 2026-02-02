@@ -11,7 +11,9 @@ class PostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user() !== null;
+        // Authorization is handled by controller using policies
+        // This just ensures user is authenticated for create/store
+        return auth()->check();
     }
 
     /**
@@ -25,7 +27,7 @@ class PostRequest extends FormRequest
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'is_draft' => 'nullable|boolean',
-            'published_at' => 'nullable|date_format:Y-m-d H:i:s',
+            'published_at' => 'nullable|datetime',
         ];
     }
 }

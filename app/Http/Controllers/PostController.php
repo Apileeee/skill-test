@@ -84,12 +84,12 @@ class PostController extends Controller
      * Remove the specified post from storage.
      * Only the post author can delete the post.
      */
-    public function destroy(Post $post): JsonResponse
+    public function destroy(Post $post)
     {
         $this->authorize('delete', $post);
 
         $post->delete();
 
-        return response()->json(status: 204);
+        return response()->noContent();
     }
 }
