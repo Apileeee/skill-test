@@ -77,6 +77,7 @@ class Post extends Model
     public function scopeActive($query)
     {
         return $query->where('is_draft', false)
+            ->whereNotNull('published_at')
             ->where('published_at', '<=', now());
     }
 }

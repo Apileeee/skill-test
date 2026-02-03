@@ -50,7 +50,7 @@ class PostController extends Controller
     {
         // Check if post is active (published)
         if ($post->isDraft() || $post->isScheduled()) {
-            return response()->json(['message' => 'Not Found'], 404);
+            abort(404);
         }
 
         return response()->json($post->load('user'));
@@ -84,7 +84,7 @@ class PostController extends Controller
      * Remove the specified post from storage.
      * Only the post author can delete the post.
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post): Response
     {
         $this->authorize('delete', $post);
 
