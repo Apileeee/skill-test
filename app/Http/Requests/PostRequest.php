@@ -11,8 +11,6 @@ class PostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        // Authorization is handled by controller using policies
-        // This just ensures user is authenticated for create/store
         return auth()->check();
     }
 
